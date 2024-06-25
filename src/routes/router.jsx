@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, redirect } from 'react-router-dom';
 
 import NotFound from '@/pages/notfound';
 import {
@@ -34,26 +34,24 @@ const routes = [
         element: <LayoutMain />,
         errorElement: <Error5XX />,
         children: [
-          //* Profile Page
-          {
-            index: true,
-            element: <Profile />,
-            errorElement: <Error5XX />
-          },
-
           //* Dashboard Page
           {
-            path: 'dashboard',
-            element: <DashBoardLayout />,
+            path: '/',
+            element: <VehicleLayout />,
             errorElement: <Error5XX />,
             children: [
               {
                 index: true,
-                element: <Dashboard />
+                element: <Vehicle />
               }
             ]
           },
-
+          //* Profile Page
+          {
+            path: 'profile',
+            element: <Profile />,
+            errorElement: <Error5XX />
+          },
           //* User Page
           {
             path: 'user',

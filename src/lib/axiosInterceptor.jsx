@@ -13,7 +13,7 @@ import {
 
 // Create an Axios instance
 const axiosInstance = axios.create({
-  baseURL: '/v1',
+  baseURL: process.env.API_URL,
   timeout: TIME_CONSTANTS._15_SECONDS,
   withCredentials: true,
   headers: {

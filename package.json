@@ -10,8 +10,6 @@
     "lint": "eslint ./src --ext .cjs,.mjs,.js,.jsx,.cts,.mts --fix --ignore-path .gitignore && echo \"Tai Dev Check Eslint ✅\"",
     "lint:fix": "eslint . --fix --ext .js,.jsx",
     "format": "prettier --write src/**/*.{js,jsx}",
-    "prepare": "husky install",
-    "pre-commit": "echo \"[Husky] pre-commit\"",
     "lint-staged": "lint-staged"
   },
   "lint-staged": {
@@ -20,26 +18,10 @@
       "npm run format"
     ]
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint-staged"
-    }
-  },
-  "commitlint": {
-    "rules": {
-      "header-max-length": [
-        2,
-        "always",
-        130
-      ]
-    },
-    "extends": [
-      "./commitlint.config.js"
-    ]
-  },
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
+    "@iconify/react": "^5.0.1",
     "@mui/icons-material": "^5.15.20",
     "@mui/material": "^5.15.20",
     "@reduxjs/toolkit": "^2.2.5",
@@ -47,6 +29,7 @@
     "crypto-js": "^4.2.0",
     "json2mq": "^0.2.0",
     "lodash": "^4.17.21",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet-async": "^2.0.5",

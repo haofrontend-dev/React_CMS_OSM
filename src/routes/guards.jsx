@@ -21,7 +21,7 @@ export const DashBoardWithAccess = WithAccessRoleRole(
 );
 
 export const DashBoardWithPermission = WithAccessRolePermission(
-  lazy(() => import('@/pages/dashboard')),
+  lazy(() => import('@/pages/vehicle-managers/index')),
   [PERMISSIONS.GET]
 );
 
@@ -32,22 +32,22 @@ export const VehicleWithAccess = WithAccessRoleRole(
 );
 
 export const VehicleWithPermission = WithAccessRolePermission(
-  lazy(() => import('@/pages/vehicle')),
+  lazy(() => import('@/pages/vehicle-managers')),
   [PERMISSIONS.GET]
 );
 
 export const VehicleDetailEditWithPermission = WithAccessRolePermission(
-  lazy(() => import('@/pages/vehicle/detail')),
+  lazy(() => import('@/pages/vehicle-managers/detail')),
   [PERMISSIONS.GET]
 );
 
 export const VehicleCreateWithPermission = WithAccessRolePermission(
-  lazy(() => import('@/pages/vehicle/create/index')),
+  lazy(() => import('@/pages/vehicle-managers/create/index')),
   [PERMISSIONS.ADD]
 );
 
 export const VehicleEditWithPermission = WithAccessRolePermission(
-  lazy(() => import('@/pages/vehicle/edit')),
+  lazy(() => import('@/pages/vehicle-managers/edit')),
   [PERMISSIONS.EDIT]
 );
 

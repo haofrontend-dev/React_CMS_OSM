@@ -1,3 +1,4 @@
+import { AuthLogin } from '@/api/authApi';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const AuthRedux = {
@@ -8,10 +9,12 @@ export const loginUser = createAsyncThunk(
   `${AuthRedux.Auth}/login`,
   async (data, { rejectWithValue }) => {
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      return {
-        metadata: data
-      };
+      const response = await AuthLogin({
+        email: data.email,
+        password: data.password
+      })
+
+      return response 
     } catch (error) {
       return rejectWithValue({
         errorMessage: 'An error occurred',

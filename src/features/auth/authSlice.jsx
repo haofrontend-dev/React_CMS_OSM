@@ -32,6 +32,7 @@ const authSlice = createSlice({
     builder.addMatcher(
       action => action.type.endsWith('/rejected'),
       (state, action) => {
+        state.isLoading = false;
         state.error = action.payload;
       }
     );

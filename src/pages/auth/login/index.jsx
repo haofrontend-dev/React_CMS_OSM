@@ -53,17 +53,17 @@ const Login = () => {
                     }}
                   >
                     <TextField
-                      id='identifier'
+                      id='email'
                       label='Email or username'
                       variant='outlined'
-                      {...register('identifier', {
+                      {...register('email', {
                         required: true,
                         minLength: 3,
                         pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
                       })}
-                      error={!!errors.identifier}
+                      error={!!errors.email}
                       helperText={
-                        errors.identifier ? 'Email in correct format' : ''
+                        errors.email ? 'Email in correct format' : ''
                       }
                       autoComplete='off' // or "new-password"
                     />
@@ -76,12 +76,11 @@ const Login = () => {
                       {...register('password', {
                         required: true,
                         minLength: 5,
-                        pattern:
-                          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+                       
                       })}
                       error={!!errors.password}
                       helperText={
-                        errors.password ? 'Min 5, uppercase, lowercase, number, symbol' : ''
+                        errors.password ? 'Password must be 5 characters' : ''
                       }
                       autoComplete='off' // or "new-password"
                     />
@@ -90,7 +89,6 @@ const Login = () => {
                       fullWidth
                       variant='contained'
                       color='primary'
-                      isLoading={true}
                       disabled={isLoading}
                     >
                       { isLoading ? 'Loading...' : 'Login' }
