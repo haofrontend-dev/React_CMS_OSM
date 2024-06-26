@@ -218,7 +218,7 @@ const ShowCrimes = ({ data }) => {
                     )}
                     {status === 2 && (
                       <Button variant='contained' color='warning' size='small'>
-                        Quảng đường
+                        Lộ trình
                       </Button>
                     )}
                   </Stack>

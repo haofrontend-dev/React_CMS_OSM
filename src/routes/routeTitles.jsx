@@ -39,7 +39,10 @@ const routeTitles = [
   },
   //* ORDERS
   { pattern: /^\/list-orders$/, title: id => TITLE_CONSTANTS.ORDERS },
-  { pattern: /.*/, title: TITLE_CONSTANTS.NOTFOUND },
+  { pattern: /^\/auth\/login$/, title: id => TITLE_CONSTANTS.LOGIN },
+  { pattern: /^\/maps$/, title: id => TITLE_CONSTANTS.MAPS },
+
+  { pattern: /.*/, title: TITLE_CONSTANTS.NOTFOUND }
 ];
 
 export default routeTitles;
