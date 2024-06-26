@@ -6,7 +6,9 @@ import vehicleSlice from '@/features/vehicle/vehicleSlice';
 import OrderSlice from '@/features/orders/ordersSlice';
 import UserSlice from '@/features/users/usersSlice';
 
+
 import { configureStore } from '@reduxjs/toolkit';
+import profileSlice from '@/features/profiles/profileSlice';
 
 const shouldEnvironment = process.env.NODE_APP === APP_NODE.dev;
 
@@ -21,7 +23,8 @@ export const store = configureStore({
     auth: authSlice,
     vehicle: vehicleSlice,
     orders: OrderSlice,
-    users: UserSlice
+    users: UserSlice,
+    profile:profileSlice,
   },
 
   middleware: getDefaultMiddleware =>

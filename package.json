@@ -24,6 +24,7 @@
     "@iconify/react": "^5.0.1",
     "@mui/icons-material": "^5.15.20",
     "@mui/material": "^5.15.20",
+    "@mui/styles": "^5.15.20",
     "@reduxjs/toolkit": "^2.2.5",
     "axios": "^1.7.2",
     "crypto-js": "^4.2.0",
