@@ -8,6 +8,7 @@ import { alpha } from '@mui/material/styles';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
+import { Link, useNavigate, useNavigation } from 'react-router-dom';
 
 export const account = {
   displayName: 'Jaydon Frankie',
@@ -20,22 +21,16 @@ export const account = {
 
 const MENU_OPTIONS = [
   {
-    label: 'Home',
-    icon: 'eva:home-fill',
-  },
-  {
     label: 'Profile',
     icon: 'eva:person-fill',
-  },
-  {
-    label: 'Settings',
-    icon: 'eva:settings-2-fill',
-  },
+    path: '/profile'
+  }
 ];
 
 // ----------------------------------------------------------------------
 
 export default function AccountPopover() {
+  const navigate = useNavigate()
   const [open, setOpen] = useState(null);
 
   const handleOpen = (event) => {
@@ -100,8 +95,11 @@ export default function AccountPopover() {
         <Divider sx={{ borderStyle: 'dashed' }} />
 
         {MENU_OPTIONS.map((option) => (
-          <MenuItem key={option.label} onClick={handleClose}>
-            {option.label}
+          <MenuItem key={option.label} onClick={() => {
+            navigate('/profile')
+            handleClose()
+          }}>
+            <Link>{option.label}</Link>
           </MenuItem>
         ))}
 
