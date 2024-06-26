@@ -14,7 +14,7 @@ export const loginUser = createAsyncThunk(
         password: data.password
       })
 
-      return response 
+      return response.metadata
     } catch (error) {
       return rejectWithValue({
         errorMessage: 'An error occurred',

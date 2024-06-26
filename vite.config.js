@@ -33,7 +33,7 @@ export default defineConfig(({ mode }) => {
       host: true,
       strictPort: true,
       proxy: {
-        '/v1': env.API_URL,
+        '/api/v1': env.API_URL,
       },
       watch: {
         usePolling: true,

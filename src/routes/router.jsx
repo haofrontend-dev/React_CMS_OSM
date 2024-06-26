@@ -19,10 +19,13 @@ import {
   VehicleCreate,
   VehicleDetail,
   VehicleEdit,
-  VehicleLayout
+  VehicleLayout,
+  Orders,
+  Maps
 } from '@/routes/lazyLoader';
 
 import App from '@/App';
+import { element } from 'prop-types';
 
 const routes = [
   {
@@ -101,6 +104,16 @@ const routes = [
             ]
           },
 
+          {
+            path: 'list-orders',
+            element: <Orders />,
+            errorElement: <Error5XX />,
+          },
+          {
+            path: 'maps',
+            element: <Maps />,
+            errorElement: <Error5XX />
+          },
           //* Unauthorized Page
           {
             path: 'unauthorized',

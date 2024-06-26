@@ -13,23 +13,19 @@ import {
   TablePagination
 } from '@mui/material';
 import Iconify from '@/components/common/Iconify';
-import useBreadcrumbs from '@/hooks/useBreadcrumbs';
-import VehicleTableToolbar from '../VehicleTableToolbar';
-import VehicleTableFilter from '../VehicleTableFilter';
-import VehicleTableHead from '../VehicleTableHead';
+import UsersTableToolbar from '../UsersTableToolbar';
+import UsersTableFilter from '../UsersTableFilter';
+import UsersTableHead from '../UsersTableHead';
 
 import { cars } from '@/dumy/listCars';
 import { applyFilter, emptyRows, getComparator } from '@/utils';
-import VehicleTableRow from '../VehicleTableRow';
+import UsersTableRow from '../UsersTableRow';
 import TableEmptyRows from '@/components/common/table/TableEmptyRows';
 import TableNoData from '@/components/common/table/TableNoData';
 import useAppSelector from '@/hooks/useAppSelector';
-import { useDispatch } from 'react-redux';
-import { getVehicleAll } from '@/features/vehicle/vehicleThunk';
 
-const VehicleManagerView = () => {
-  const { dataVehicle } = useAppSelector(state => state.vehicle);
-  const breadcrumbs = useBreadcrumbs();
+const UsersManagerView = () => {
+  const { dataUsers } = useAppSelector(state => state.users);
   const [order, setOrder] = React.useState('asc');
   const [selected, setSelected] = React.useState([]);
   const [orderBy, setOrderBy] = React.useState('device_id');
@@ -62,7 +58,7 @@ const VehicleManagerView = () => {
 
   const handleSelectAllClick = event => {
     if (event.target.checked) {
-      const newSelecteds = dataVehicle.map(n => n.device_id);
+      const newSelecteds = dataUsers.map(n => n.device_id);
       setSelected(newSelecteds);
       return;
     }
@@ -96,9 +92,9 @@ const VehicleManagerView = () => {
     setRowsPerPage(parseInt(event.target.value, 10));
   };
 
-  if (dataVehicle) {
+  if (dataUsers) {
     const dataFiltered = applyFilter({
-      inputData: dataVehicle,
+      inputData: dataUsers,
       comparator: getComparator(order, orderBy),
       filterName
     });
@@ -114,7 +110,7 @@ const VehicleManagerView = () => {
           justifyContent='space-between'
           mb={5}
         >
-          <Typography variant='h5'>Danh sách xe</Typography>
+          <Typography variant='h5'>Danh sách khách hàng</Typography>
           <Button
             variant='contained'
             color='inherit'
@@ -123,52 +119,47 @@ const VehicleManagerView = () => {
             Tạo
           </Button>
         </Stack>
-        <Breadcrumbs separator='›' aria-label='breadcrumb' mb={5}>
-          {breadcrumbs}
-        </Breadcrumbs>
         <Card>
-          <VehicleTableToolbar
+          <UsersTableToolbar
             numSelected={selected.length}
             filterName={filterName}
             onFilterName={handleFilterByName}
             onOptionFilter={handleShowFilter}
           />
-          {isShowFilter && <VehicleTableFilter onFilter={handleActionFilter} />}
+          {isShowFilter && <UsersTableFilter onFilter={handleActionFilter} />}
 
           <TableContainer sx={{ overflow: 'unset' }}>
             <Table sx={{ minWidth: 800 }}>
-              <VehicleTableHead
+              <UsersTableHead
                 order={order}
                 orderBy={orderBy}
                 numSelected={selected.length}
                 onRequestSort={handleSort}
                 onSelectAllClick={handleSelectAllClick}
                 headLabel={[
-                  { id: 'device_id', label: 'ID' },
-                  { id: 'status', label: 'Trạng thái' },
-                  { id: 'battery_status', label: 'Trạng thái pin' },
+                  { id: 'avatar', label: 'Avatar' },
                   { id: 'customer_name', label: 'Tên KH' },
-                  { id: 'unit_price', label: 'Giá thuê' },
-                  { id: 'total_price', label: 'Thành tiền' },
-                  { id: 'rental_duration', label: 'Thời gian thuê' },
+                  { id: 'email', label: 'Email' },
+                  { id: 'phone_number', label: 'SĐT' },
+                  { id: 'address', label: 'Địa chỉ' },
+                  { id: 'registration_date', label: 'Ngày đăng ký' }
                 ]}
               />
               <TableBody>
-                {Array.isArray(dataVehicle) &&
-                  dataVehicle.length > 0 &&
+                {Array.isArray(dataUsers) &&
+                  dataUsers.length > 0 &&
                   dataFiltered
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map(row => {
+                    .map((row, index) => {
                       return (
-                        <VehicleTableRow
-                          key={row?.device_id}
-                          device_id={row?.device_id}
-                          status={row.status}
-                          battery_status={row.battery_status}
-                          unit_price={row.unit_price}
-                          total_price={row.total_price}
-                          rental_duration={row.rental_duration}
+                        <UsersTableRow
+                          key={index}
+                          email={row?.email}
+                          avatar={row.avatar}
+                          address={row.address}
+                          phone_number={row.phone_number}
                           customer_name={row.customer_name}
+                          registration_date={row.registration_date}
                           selected={selected.indexOf(row.device_id) !== -1}
                           handleClick={event =>
                             handleClick(event, row.device_id)
@@ -179,7 +170,7 @@ const VehicleManagerView = () => {
 
                 <TableEmptyRows
                   height={77}
-                  emptyRows={emptyRows(page, rowsPerPage, dataVehicle.length)}
+                  emptyRows={emptyRows(page, rowsPerPage, dataUsers.length)}
                 />
 
                 {notFound && <TableNoData query={filterName} />}
@@ -206,4 +197,4 @@ const VehicleManagerView = () => {
   }
 };
 
-export default VehicleManagerView;
+export default UsersManagerView;

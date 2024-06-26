@@ -3,5 +3,6 @@ export const TITLE_CONSTANTS = {
   USER: 'User Page',
   VEHICLE: 'Vehicle Page',
   PROFILE: 'Profile Page',
-  NOTFOUND: 'NotFound 4xx'
+  NOTFOUND: 'NotFound 4xx',
+  ORDERS: 'Orders Page'
 };

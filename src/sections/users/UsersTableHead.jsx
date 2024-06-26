@@ -14,7 +14,7 @@ export const visuallyHidden = {
   clip: 'rect(0 0 0 0)',
 };
 
-const VehicleTableHead = ({
+const OrdersTableHead = ({
   order,
   orderBy,
   rowCount,
@@ -65,7 +65,7 @@ const VehicleTableHead = ({
   );
 };
 
-VehicleTableHead.propTypes = {
+OrdersTableHead.propTypes = {
   order: PropTypes.oneOf(['asc', 'desc']),
   orderBy: PropTypes.string,
   rowCount: PropTypes.number,
@@ -74,4 +74,4 @@ VehicleTableHead.propTypes = {
   onRequestSort: PropTypes.func,
   onSelectAllClick: PropTypes.func
 };
-export default VehicleTableHead;
+export default OrdersTableHead;

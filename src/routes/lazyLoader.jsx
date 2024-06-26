@@ -15,7 +15,9 @@ import {
   VehicleDetailEditWithPermission,
   VehicleEditWithPermission,
   VehicleWithAccess,
-  VehicleWithPermission
+  VehicleWithPermission,
+  OrdersWithPermission,
+  MapsWithPermission
 } from '@/routes/guards';
 
 //* LAYOUT
@@ -46,6 +48,12 @@ export const Vehicle = withSuspense(VehicleWithPermission);
 export const VehicleDetail = withSuspense(VehicleDetailEditWithPermission);
 export const VehicleCreate = withSuspense(VehicleCreateWithPermission);
 export const VehicleEdit = withSuspense(VehicleEditWithPermission);
+
+//* ORDERS
+export const Orders = withSuspense(OrdersWithPermission);
+
+//* ORDERS
+export const Maps = withSuspense(MapsWithPermission);
 
 //* AUTH
 export const Login = withSuspense(lazy(() => import('@/pages/auth/login')));

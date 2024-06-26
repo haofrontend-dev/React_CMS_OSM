@@ -21,19 +21,19 @@ const Menuitems = [
     id: uniqueId(),
     title: 'Quản lý Maps',
     icon: MapOutlined,
-    href: '/control-map'
+    href: '/maps'
   },
   {
     id: uniqueId(),
     title: 'Quản lý đơn hàng',
     icon: BookmarkAddOutlined,
-    href: '/orders'
+    href: '/list-orders'
   },
   {
     id: uniqueId(),
     title: 'Quản lý khách hàng',
     icon: PeopleOutline,
-    href: '/customers'
+    href: '/user'
   }
 ];
 

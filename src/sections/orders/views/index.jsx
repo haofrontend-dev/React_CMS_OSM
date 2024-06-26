@@ -13,23 +13,19 @@ import {
   TablePagination
 } from '@mui/material';
 import Iconify from '@/components/common/Iconify';
-import useBreadcrumbs from '@/hooks/useBreadcrumbs';
-import VehicleTableToolbar from '../VehicleTableToolbar';
-import VehicleTableFilter from '../VehicleTableFilter';
-import VehicleTableHead from '../VehicleTableHead';
+import OrdersTableToolbar from '../OrdersTableToolbar';
+import OrdersTableFilter from '../OrdersTableFilter';
+import OrdersTableHead from '../OrdersTableHead';
 
 import { cars } from '@/dumy/listCars';
 import { applyFilter, emptyRows, getComparator } from '@/utils';
-import VehicleTableRow from '../VehicleTableRow';
+import OrdersTableRow from '../OrdersTableRow';
 import TableEmptyRows from '@/components/common/table/TableEmptyRows';
 import TableNoData from '@/components/common/table/TableNoData';
 import useAppSelector from '@/hooks/useAppSelector';
-import { useDispatch } from 'react-redux';
-import { getVehicleAll } from '@/features/vehicle/vehicleThunk';
 
-const VehicleManagerView = () => {
-  const { dataVehicle } = useAppSelector(state => state.vehicle);
-  const breadcrumbs = useBreadcrumbs();
+const OrdersManagerView = () => {
+  const { dataOrders } = useAppSelector(state => state.orders);
   const [order, setOrder] = React.useState('asc');
   const [selected, setSelected] = React.useState([]);
   const [orderBy, setOrderBy] = React.useState('device_id');
@@ -62,7 +58,7 @@ const VehicleManagerView = () => {
 
   const handleSelectAllClick = event => {
     if (event.target.checked) {
-      const newSelecteds = dataVehicle.map(n => n.device_id);
+      const newSelecteds = dataOrders.map(n => n.device_id);
       setSelected(newSelecteds);
       return;
     }
@@ -96,9 +92,9 @@ const VehicleManagerView = () => {
     setRowsPerPage(parseInt(event.target.value, 10));
   };
 
-  if (dataVehicle) {
+  if (dataOrders) {
     const dataFiltered = applyFilter({
-      inputData: dataVehicle,
+      inputData: dataOrders,
       comparator: getComparator(order, orderBy),
       filterName
     });
@@ -114,7 +110,7 @@ const VehicleManagerView = () => {
           justifyContent='space-between'
           mb={5}
         >
-          <Typography variant='h5'>Danh sách xe</Typography>
+          <Typography variant='h5'>Danh sách đơn hàng</Typography>
           <Button
             variant='contained'
             color='inherit'
@@ -123,21 +119,18 @@ const VehicleManagerView = () => {
             Tạo
           </Button>
         </Stack>
-        <Breadcrumbs separator='›' aria-label='breadcrumb' mb={5}>
-          {breadcrumbs}
-        </Breadcrumbs>
         <Card>
-          <VehicleTableToolbar
+          <OrdersTableToolbar
             numSelected={selected.length}
             filterName={filterName}
             onFilterName={handleFilterByName}
             onOptionFilter={handleShowFilter}
           />
-          {isShowFilter && <VehicleTableFilter onFilter={handleActionFilter} />}
+          {isShowFilter && <OrdersTableFilter onFilter={handleActionFilter} />}
 
           <TableContainer sx={{ overflow: 'unset' }}>
             <Table sx={{ minWidth: 800 }}>
-              <VehicleTableHead
+              <OrdersTableHead
                 order={order}
                 orderBy={orderBy}
                 numSelected={selected.length}
@@ -145,30 +138,30 @@ const VehicleManagerView = () => {
                 onSelectAllClick={handleSelectAllClick}
                 headLabel={[
                   { id: 'device_id', label: 'ID' },
-                  { id: 'status', label: 'Trạng thái' },
-                  { id: 'battery_status', label: 'Trạng thái pin' },
                   { id: 'customer_name', label: 'Tên KH' },
-                  { id: 'unit_price', label: 'Giá thuê' },
-                  { id: 'total_price', label: 'Thành tiền' },
-                  { id: 'rental_duration', label: 'Thời gian thuê' },
+                  { id: 'status', label: 'Trạng thái' },
+                  { id: 'unit_price', label: 'Đơn giá' },
+                  { id: 'total_price', label: 'Tổng tiền' },
+                  { id: 'rental_start', label: 'Ngày bắt đầu thuê' },
+                  { id: 'rental_end', label: 'Ngày kết thúc' },
                 ]}
               />
               <TableBody>
-                {Array.isArray(dataVehicle) &&
-                  dataVehicle.length > 0 &&
+                {Array.isArray(dataOrders) &&
+                  dataOrders.length > 0 &&
                   dataFiltered
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map(row => {
                       return (
-                        <VehicleTableRow
+                        <OrdersTableRow
                           key={row?.device_id}
                           device_id={row?.device_id}
-                          status={row.status}
-                          battery_status={row.battery_status}
+                          order_status={row.order_status}
                           unit_price={row.unit_price}
                           total_price={row.total_price}
-                          rental_duration={row.rental_duration}
                           customer_name={row.customer_name}
+                          rental_start={row.rental_start}
+                          rental_end={row.rental_end}
                           selected={selected.indexOf(row.device_id) !== -1}
                           handleClick={event =>
                             handleClick(event, row.device_id)
@@ -179,7 +172,7 @@ const VehicleManagerView = () => {
 
                 <TableEmptyRows
                   height={77}
-                  emptyRows={emptyRows(page, rowsPerPage, dataVehicle.length)}
+                  emptyRows={emptyRows(page, rowsPerPage, dataOrders.length)}
                 />
 
                 {notFound && <TableNoData query={filterName} />}
@@ -206,4 +199,4 @@ const VehicleManagerView = () => {
   }
 };
 
-export default VehicleManagerView;
+export default OrdersManagerView;

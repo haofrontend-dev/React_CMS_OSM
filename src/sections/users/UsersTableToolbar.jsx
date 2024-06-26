@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import React from 'react';
 
-const VehicleTableToolbar = ({ numSelected, filterName, onFilterName, onOptionFilter }) => {
+const OrdersTableToolbar = ({ numSelected, filterName, onFilterName, onOptionFilter }) => {
   return (
     <Toolbar
       sx={{
@@ -32,7 +32,7 @@ const VehicleTableToolbar = ({ numSelected, filterName, onFilterName, onOptionFi
         <OutlinedInput
           value={filterName}
           onChange={onFilterName}
-          placeholder='Tìm kiếm xe bằng ID...'
+          placeholder='Tìm kiếm đơn hàng...'
           sx={{
             width: '100%'
           }}
@@ -64,4 +64,4 @@ const VehicleTableToolbar = ({ numSelected, filterName, onFilterName, onOptionFi
   );
 };
 
-export default VehicleTableToolbar;
+export default OrdersTableToolbar;

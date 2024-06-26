@@ -51,6 +51,18 @@ export const VehicleEditWithPermission = WithAccessRolePermission(
   [PERMISSIONS.EDIT]
 );
 
+//* ORDERS
+export const OrdersWithPermission = WithAccessRolePermission(
+  lazy(() => import('@/pages/orders-managers')),
+  [PERMISSIONS.GET]
+);
+
+//* MAPS
+export const MapsWithPermission = WithAccessRolePermission(
+  lazy(() => import('@/pages/maps-managers')),
+  [PERMISSIONS.GET]
+);
+
 //* USER
 export const UserWithAccess = WithAccessRoleRole(
   lazy(() => import('@/layouts/mainLayout/userLayout/UserLayout')),

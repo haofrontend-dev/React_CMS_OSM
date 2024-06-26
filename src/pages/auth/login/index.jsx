@@ -31,7 +31,7 @@ const Login = () => {
 
   React.useEffect(() => {
     if (dataAuth) {
-      setItem(USER_KEYS.USER_TOKEN, dataAuth);
+      setItem(USER_KEYS.USER_TOKEN, dataAuth.access_token);
       navigate('/');
     }
   }, [dataAuth]);

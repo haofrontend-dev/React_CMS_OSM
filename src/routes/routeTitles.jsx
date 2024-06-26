@@ -5,7 +5,7 @@ const routeTitles = [
   { pattern: /^\/dashboard$/, title: TITLE_CONSTANTS.DASHBOARD },
 
   //* PROFILE
-  { pattern: /^\/$/, title: TITLE_CONSTANTS.PROFILE },
+  { pattern: /^\/profile$/, title: TITLE_CONSTANTS.PROFILE },
 
   //* USER
   { pattern: /^\/user$/, title: TITLE_CONSTANTS.USER },
@@ -23,7 +23,8 @@ const routeTitles = [
   },
 
   //* VEHICLE
-  { pattern: /^\/vehicle$/, title: TITLE_CONSTANTS.VEHICLE },
+  { pattern: /^\/$/, title: TITLE_CONSTANTS.VEHICLE },
+
   {
     pattern: /^\/vehicle\/create$/,
     title: `${TITLE_CONSTANTS.VEHICLE} | Create`
@@ -36,7 +37,9 @@ const routeTitles = [
     pattern: /^\/vehicle\/(\d+)$/,
     title: id => `${TITLE_CONSTANTS.VEHICLE}  | ${id}`
   },
-  { pattern: /.*/, title: TITLE_CONSTANTS.NOTFOUND }
+  //* ORDERS
+  { pattern: /^\/list-orders$/, title: id => TITLE_CONSTANTS.ORDERS },
+  { pattern: /.*/, title: TITLE_CONSTANTS.NOTFOUND },
 ];
 
 export default routeTitles;
