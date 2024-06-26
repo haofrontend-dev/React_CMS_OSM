@@ -1,6 +1,11 @@
-import { Container } from '@mui/material';
 import React from 'react';
-import { MapContainer, TileLayer, useMap, ZoomControl } from 'react-leaflet';
+import {
+  MapContainer,
+  TileLayer,
+  useMap,
+  ZoomControl,
+  useMapEvents
+} from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import ShowCrimes from '../MapCrimes';
@@ -23,10 +28,31 @@ const ResetCenterView = props => {
   return null;
 };
 
+const EnforceBounds = ({ maxBounds }) => {
+  const map = useMapEvents({
+    moveend() {
+      if (!maxBounds.contains(map.getCenter())) {
+        map.panInsideBounds(maxBounds, { animate: true });
+      }
+    },
+    zoomend() {
+      if (!maxBounds.contains(map.getCenter())) {
+        map.panInsideBounds(maxBounds, { animate: true });
+      }
+    }
+  });
+  return null;
+};
+
 const MapsManagersViews = () => {
   const { dataVehicle } = useAppSelector(state => state.vehicle);
 
   const [location, setLocation] = React.useState([12.245, 109.1943]);
+  const bounds = L.latLngBounds(
+    L.latLng(12.2, 109.1), // Southwestern coordinate of Nha Trang
+    L.latLng(12.3, 109.3) // Northeastern coordinate of Nha Trang
+  );
+  const maxBounds = bounds.pad(0.1);
 
   if (dataVehicle) {
     return (
@@ -34,6 +60,7 @@ const MapsManagersViews = () => {
         center={location}
         zoom={15}
         scrollWheelZoom={true}
+        maxBounds={maxBounds}
         style={{ width: '100%', minHeight: '100vh' }}
         zoomControl={false}
       >
@@ -43,7 +70,8 @@ const MapsManagersViews = () => {
         />
         {location.length > 0 && <ResetCenterView location={location} />}
         <ZoomControl position='topleft' />
-        <ShowCrimes data={dataVehicle} />
+        <EnforceBounds maxBounds={maxBounds} />
+        {dataVehicle && <ShowCrimes data={dataVehicle} />}
       </MapContainer>
     );
   }
@@ -53,6 +81,7 @@ const MapsManagersViews = () => {
       center={location}
       zoom={15}
       scrollWheelZoom={true}
+      maxBounds={maxBounds}
       style={{ width: '100%', minHeight: '100vh' }}
       zoomControl={false}
     >

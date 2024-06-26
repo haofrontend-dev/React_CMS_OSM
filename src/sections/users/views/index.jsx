@@ -133,6 +133,7 @@ const UsersManagerView = () => {
               <UsersTableHead
                 order={order}
                 orderBy={orderBy}
+                rowCount={dataUsers.length}
                 numSelected={selected.length}
                 onRequestSort={handleSort}
                 onSelectAllClick={handleSelectAllClick}
@@ -142,7 +143,8 @@ const UsersManagerView = () => {
                   { id: 'email', label: 'Email' },
                   { id: 'phone_number', label: 'SĐT' },
                   { id: 'address', label: 'Địa chỉ' },
-                  { id: 'registration_date', label: 'Ngày đăng ký' }
+                  { id: 'registration_date', label: 'Ngày đăng ký' },
+                  { id: '', }
                 ]}
               />
               <TableBody>

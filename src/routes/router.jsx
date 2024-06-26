@@ -25,7 +25,6 @@ import {
 } from '@/routes/lazyLoader';
 
 import App from '@/App';
-import { element } from 'prop-types';
 
 const routes = [
   {

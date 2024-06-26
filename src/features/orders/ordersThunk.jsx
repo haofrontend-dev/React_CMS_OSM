@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { dataOrders } from '@/dumy/orders';
+import { OrderGetAll } from '@/api/orderApi';
 
 export const OrderRedux = {
   Order: 'Order'
@@ -9,15 +9,7 @@ export const getOrdersAll = createAsyncThunk(
   `${OrderRedux.Order}/get/all`,
   async (_, { rejectWithValue }) => {
     try {
-      // const response = await OrderGetAll()
-      const response = await new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve({
-            metadata: dataOrders
-          });
-        }, 1000);
-      });
-
+      const response = await OrderGetAll()
       return response.metadata;
     } catch (error) {
       return rejectWithValue({

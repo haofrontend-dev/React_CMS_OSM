@@ -12,6 +12,7 @@ import {
 } from '@mui/material';
 import Iconify from '@/components/common/Iconify';
 import Label from '@/components/common/label';
+import { generateClassStatusBattery, generateNameVehicle } from '@/utils';
 
 const VehicleTableRow = ({
   device_id,
@@ -21,6 +22,7 @@ const VehicleTableRow = ({
   unit_price,
   total_price,
   rental_duration,
+  vehicle_type,
   selected,
   handleClick
 }) => {
@@ -85,9 +87,21 @@ const VehicleTableRow = ({
           </Label>
         </TableCell>
 
-        <TableCell>{battery_status || ''}%</TableCell>
+        <TableCell>
+          <Label color={generateClassStatusBattery(battery_status)}>
+            {battery_status}%
+          </Label>
+        </TableCell>
 
-        <TableCell>{customer_name || ''}</TableCell>
+        <TableCell>
+          {customer_name ? (
+            customer_name
+          ) : (
+            <Label color='success'>Xe đang trống</Label>
+          )}
+        </TableCell>
+
+        <TableCell>{generateNameVehicle(vehicle_type) || ''}</TableCell>
 
         <TableCell>
           {Intl.NumberFormat('vi', {
@@ -102,10 +116,13 @@ const VehicleTableRow = ({
                 style: 'currency',
                 currency: 'VND'
               }).format(total_price)
-            : ''}
+            : Intl.NumberFormat('vi', {
+                style: 'currency',
+                currency: 'VND'
+              }).format(0)}
         </TableCell>
 
-        <TableCell>{rental_duration || ''}</TableCell>
+        <TableCell align='center'>{rental_duration ? `${rental_duration}h` : '0'}</TableCell>
 
         <TableCell align='right'>
           <IconButton onClick={handleOpenMenu}>
@@ -152,7 +169,8 @@ VehicleTableRow.propTypes = {
   role: PropTypes.any,
   unit_price: PropTypes.any,
   total_price: PropTypes.any,
-  rental_duration: PropTypes.any
+  rental_duration: PropTypes.any,
+  vehicle_type: PropTypes.any
 };
 
 export default VehicleTableRow;

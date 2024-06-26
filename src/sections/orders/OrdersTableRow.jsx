@@ -36,13 +36,13 @@ const OrdersTableRow = ({
 
   const generateTextStatus = status => {
     switch (status) {
-      case 1:
+      case 10:
         return 'Chờ nhận xe';
-      case 2:
+      case 20:
         return 'Đã có khách';
-      case 3:
+      case 30:
         return 'Hoàn thành';
-      case 4:
+      case 40:
         return 'Hủy đơn';
       default:
         return 'Chờ nhận xe';
@@ -51,13 +51,13 @@ const OrdersTableRow = ({
 
   const generateClassStatus = status => {
     switch (status) {
-      case 1:
+      case 10:
         return 'success';
-      case 2:
+      case 20:
         return 'primary';
-      case 3:
+      case 30:
         return 'warning';
-      case 4:
+      case 40:
         return 'error';
       default:
         return 'success';

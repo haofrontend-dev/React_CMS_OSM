@@ -133,6 +133,7 @@ const OrdersManagerView = () => {
               <OrdersTableHead
                 order={order}
                 orderBy={orderBy}
+                rowCount={dataOrders.length}
                 numSelected={selected.length}
                 onRequestSort={handleSort}
                 onSelectAllClick={handleSelectAllClick}
@@ -144,6 +145,7 @@ const OrdersManagerView = () => {
                   { id: 'total_price', label: 'Tổng tiền' },
                   { id: 'rental_start', label: 'Ngày bắt đầu thuê' },
                   { id: 'rental_end', label: 'Ngày kết thúc' },
+                  { id: '', },
                 ]}
               />
               <TableBody>

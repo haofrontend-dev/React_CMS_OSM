@@ -140,6 +140,7 @@ const VehicleManagerView = () => {
               <VehicleTableHead
                 order={order}
                 orderBy={orderBy}
+                rowCount={dataVehicle.length}
                 numSelected={selected.length}
                 onRequestSort={handleSort}
                 onSelectAllClick={handleSelectAllClick}
@@ -148,9 +149,11 @@ const VehicleManagerView = () => {
                   { id: 'status', label: 'Trạng thái' },
                   { id: 'battery_status', label: 'Trạng thái pin' },
                   { id: 'customer_name', label: 'Tên KH' },
+                  { id: 'vehicle_type', label: 'Loại xe' },
                   { id: 'unit_price', label: 'Giá thuê' },
                   { id: 'total_price', label: 'Thành tiền' },
                   { id: 'rental_duration', label: 'Thời gian thuê' },
+                  { id: '' },
                 ]}
               />
               <TableBody>
@@ -169,6 +172,7 @@ const VehicleManagerView = () => {
                           total_price={row.total_price}
                           rental_duration={row.rental_duration}
                           customer_name={row.customer_name}
+                          vehicle_type={row.vehicle_type}
                           selected={selected.indexOf(row.device_id) !== -1}
                           handleClick={event =>
                             handleClick(event, row.device_id)

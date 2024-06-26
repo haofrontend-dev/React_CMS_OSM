@@ -7,8 +7,15 @@ import MainWrapper from '@/layouts/common/MainWraper';
 import Sidebar from '../sidebar/Sidebar';
 import PageWrapper from '../common/PageWrapper';
 import { Container } from '@mui/material';
+import { useDispatch } from 'react-redux';
+import { getProfileAll } from '@/features/profiles/profilesThunk';
 
 const MainLayout = () => {
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    dispatch(getProfileAll());
+  }, []);
+
   const [isSidebarOpen, setSidebarOpen] = React.useState(true);
   const [isMobileSidebarOpen, setMobileSidebarOpen] = React.useState(false);
 
