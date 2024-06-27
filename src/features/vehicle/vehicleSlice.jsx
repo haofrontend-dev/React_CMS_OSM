@@ -1,11 +1,12 @@
-import { VehicleRedux, getVehicleAll } from '@/features/vehicle/vehicleThunk';
+import { VehicleRedux, getVehicleAll, getPointAll } from '@/features/vehicle/vehicleThunk';
 
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   isLoading: false,
   error: null,
-  dataVehicle: null
+  dataVehicle: null,
+  dataPoints: null
 };
 
 const vehicleSlice = createSlice({
@@ -27,6 +28,15 @@ const vehicleSlice = createSlice({
     builder.addCase(getVehicleAll.fulfilled, (state, action) => {
       state.isLoading = false;
       state.dataVehicle = action.payload;
+    });
+
+    builder.addCase(getPointAll.pending, (state, _) => {
+      state.isLoading = true;
+    });
+
+    builder.addCase(getPointAll.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.dataPoints = action.payload;
     });
 
     builder.addMatcher(

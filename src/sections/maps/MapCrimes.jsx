@@ -1,10 +1,11 @@
+import { Box, Button, Card, Divider, Stack, Typography } from '@mui/material';
+import L from 'leaflet';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Marker, Popup, useMap, Tooltip } from 'react-leaflet';
+import { Marker, Popup, useMap } from 'react-leaflet';
 import useSupercluster from 'use-supercluster';
-import L from 'leaflet';
-import { Box, Button, Card, Divider, Stack, Typography } from '@mui/material';
 
+import Label from '@/components/common/label';
 import {
   generateClassStatus,
   generateClassStatusBattery,
@@ -12,7 +13,6 @@ import {
   generatePathImage,
   generateTextStatusVehicle
 } from '@/utils';
-import Label from '@/components/common/label';
 const icons = {};
 
 const fetchIcon = count => {
@@ -53,7 +53,7 @@ const ShowCrimes = ({ data }) => {
   const [zoom, setZoom] = React.useState(12);
   const map = useMap();
 
-  const updateMap = () => {
+  const updateMap = React.useCallback(() => {
     const b = map.getBounds();
     setBounds([
       b.getSouthWest().lng,
@@ -62,11 +62,11 @@ const ShowCrimes = ({ data }) => {
       b.getNorthEast().lat
     ]);
     setZoom(map.getZoom());
-  };
+  }, [map]);
 
-  const onMove = () => {
+  const onMove = React.useCallback(() => {
     updateMap();
-  };
+  }, [updateMap]);
 
   React.useEffect(() => {
     updateMap();
@@ -79,26 +79,29 @@ const ShowCrimes = ({ data }) => {
     };
   }, [map]);
 
-  const points =
-    Array.isArray(data) &&
-    data.map((crime, index) => ({
-      type: 'Feature',
-      properties: {
-        cluster: false,
-        crimeId: index + 1,
-        category: `category-${index}`,
-        device_id: crime?.device_id,
-        vehicle_type: crime?.vehicle_type,
-        battery_status: crime?.battery_status,
-        customer_name: crime?.customer_name,
-        status: crime?.status,
-        unit_price: crime?.unit_price
-      },
-      geometry: {
-        type: 'Point',
-        coordinates: [parseFloat(crime.longitude), parseFloat(crime.latitude)]
-      }
-    }));
+  const points = React.useMemo(
+    () =>
+      Array.isArray(data) &&
+      data.map((crime, index) => ({
+        type: 'Feature',
+        properties: {
+          cluster: false,
+          crimeId: index + 1,
+          category: `category-${index}`,
+          device_id: crime?.device_id,
+          vehicle_type: crime?.vehicle_type,
+          battery_status: crime?.battery_status,
+          customer_name: crime?.customer_name,
+          status: crime?.status,
+          unit_price: crime?.unit_price
+        },
+        geometry: {
+          type: 'Point',
+          coordinates: [parseFloat(crime.longitude), parseFloat(crime.latitude)]
+        }
+      })),
+    [data]
+  );
   const { clusters, supercluster } = useSupercluster({
     points: points,
     bounds: bounds,
@@ -244,4 +247,4 @@ ShowCrimes.propTypes = {
   data: PropTypes.array.isRequired
 };
 
-export default ShowCrimes;
+export default React.memo(ShowCrimes);

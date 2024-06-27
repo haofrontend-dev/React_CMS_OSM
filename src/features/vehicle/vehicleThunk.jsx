@@ -1,8 +1,9 @@
-import { VehicleGetAll } from '@/api/vehicleApi';
+import { VehicleGetAll, PointsGetAll } from '@/api/vehicleApi';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const VehicleRedux = {
-  Vehicle: 'vehicle'
+  Vehicle: 'vehicle',
+  Point: 'point'
 };
 
 export const getVehicleAll = createAsyncThunk(
@@ -21,3 +22,17 @@ export const getVehicleAll = createAsyncThunk(
   }
 );
 
+export const getPointAll = createAsyncThunk(
+  `${VehicleRedux.Point}/get/all`,
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await PointsGetAll()
+      return response.metadata
+    } catch (error) {
+      return rejectWithValue({
+        errorMessage: 'An error occurred',
+        originalError: error
+      });
+    }
+  }
+);

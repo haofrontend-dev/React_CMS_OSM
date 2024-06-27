@@ -1,17 +1,18 @@
+import useAppSelector from '@/hooks/useAppSelector';
+import { Box, Grid } from '@mui/material';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 import React from 'react';
 import {
   MapContainer,
   TileLayer,
   useMap,
-  ZoomControl,
-  useMapEvents
+  useMapEvents,
+  ZoomControl
 } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
-import ShowCrimes from '../MapCrimes';
-import useAppSelector from '@/hooks/useAppSelector';
-import { Box, Grid } from '@mui/material';
 import MapControll from '../MapControll';
+import ShowCrimes from '../MapCrimes';
+import MapPointMaker from '../MapPointMaker';
 
 const ResetCenterView = props => {
   // eslint-disable-next-line react/prop-types
@@ -47,7 +48,7 @@ const EnforceBounds = ({ maxBounds }) => {
 };
 
 const MapsManagersViews = () => {
-  const { dataVehicle } = useAppSelector(state => state.vehicle);
+  const { dataVehicle, dataPoints } = useAppSelector(state => state.vehicle);
 
   const [location, setLocation] = React.useState([12.245, 109.1943]);
   const bounds = L.latLngBounds(
@@ -77,6 +78,7 @@ const MapsManagersViews = () => {
               <ZoomControl position='topleft' />
               <EnforceBounds maxBounds={maxBounds} />
               {dataVehicle && <ShowCrimes data={dataVehicle} />}
+              {dataPoints && <MapPointMaker dataPoints={dataPoints} />}
             </MapContainer>
             <MapControll />
           </Box>

@@ -1,4 +1,4 @@
-import { getVehicleAll } from '@/features/vehicle/vehicleThunk';
+import { getVehicleAll, getPointAll } from '@/features/vehicle/vehicleThunk';
 import MapsManagersViews from '@/sections/maps/views';
 import React from 'react';
 import { useDispatch } from 'react-redux';
@@ -17,6 +17,10 @@ const Maps = () => {
     // Cleanup function to clear the interval when the component unmounts
     return () => clearInterval(intervalId);
   }, []);
+
+  React.useEffect(() => {
+    dispatch(getPointAll())
+  }, [])
 
   return (
     <React.Fragment>
