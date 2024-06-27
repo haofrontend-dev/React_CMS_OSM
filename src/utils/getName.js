@@ -29,7 +29,8 @@ export const generatePathImage = vehicle_type => {
     'https://res.cloudinary.com/dpt5wvddv/image/upload/v1719399721/uxc5xnji4v1jibqykvlx.jpg',
     'https://res.cloudinary.com/dpt5wvddv/image/upload/v1719399789/aef9n1vg9843kdzr9nyu.jpg',
     'https://res.cloudinary.com/dpt5wvddv/image/upload/v1719407434/ph28ctpsx020m20wu06m.webp',
-    'https://res.cloudinary.com/dpt5wvddv/image/upload/v1719407506/y9ondyjatc58etqt5dtg.png'
+    'https://res.cloudinary.com/dpt5wvddv/image/upload/v1719407506/y9ondyjatc58etqt5dtg.png',
+    'https://res.cloudinary.com/dpt5wvddv/image/upload/v1719477566/dxkracpywkzelrzwvame.png'
   ];
 
   return pathImages[vehicle_type] || '';

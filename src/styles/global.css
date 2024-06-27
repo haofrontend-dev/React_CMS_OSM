@@ -60,3 +60,45 @@
 .icon-maker .icon-maker__color.warning {
   background-color: #ff9800;
 }
+
+.icon-maker__battery {
+  position: absolute;
+  top: 100%;
+  right: 50%;
+  border-radius: 4px;
+  background-color: #fff;
+  font-size: 10px;
+  padding: 2px 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow:  0 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+.icon-maker__battery.success span {
+  padding: 2px 4px;
+  background-color: #cfffd1;
+  color: #4caf50;
+  border-radius: 4px;
+}
+
+.icon-maker__battery.primary span {
+  padding: 2px 4px;
+  background-color: #d0eaff;
+  color: #1978c8;
+  border-radius: 4px;
+}
+
+.icon-maker__battery.error span {
+  padding: 2px 4px;
+  background-color: #fdc6c2;
+  color: #f44336;
+  border-radius: 4px;
+}
+
+.icon-maker__battery.warning span {
+  padding: 2px 4px;
+  background-color: #fae8cd;
+  color: #ff9800;
+  border-radius: 4px;
+}

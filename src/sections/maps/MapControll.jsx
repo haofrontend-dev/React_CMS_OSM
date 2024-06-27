@@ -36,17 +36,17 @@ const MapControll = ({ onActionFillter }) => {
           gap={4}
           p={2}
         >
-          <IconButton
+          <Button
             size='medium'
-            color='primary'
+            color='error'
+            variant='contained'
             onClick={handleDirectionsToggle}
             sx={{
-              color: 'text.primary'
+              color: '#fff'
             }}
-            aria-label='close'
           >
-            <CloseOutlined />
-          </IconButton>
+            Đóng
+          </Button>
           <MapFormFilter />
         </Box>
       </Drawer>

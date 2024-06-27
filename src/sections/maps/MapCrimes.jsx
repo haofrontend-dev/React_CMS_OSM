@@ -1,16 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Marker, Popup, useMap } from 'react-leaflet';
+import { Marker, Popup, useMap, Tooltip } from 'react-leaflet';
 import useSupercluster from 'use-supercluster';
 import L from 'leaflet';
-import {
-  Box,
-  Button,
-  Card,
-  Divider,
-  Stack,
-  Typography
-} from '@mui/material';
+import { Box, Button, Card, Divider, Stack, Typography } from '@mui/material';
 
 import {
   generateClassStatus,
@@ -41,6 +34,9 @@ const fetchIconStatus = (status, battery) => {
         <div class="icon-maker__color ${generateClassStatus(status)}">
         </div>
         <img src="./assets/icons/car.svg" alt="car" />
+        <div class="icon-maker__battery ${generateClassStatusBattery(battery)}">
+          <span>${battery}%</span>
+        </div>
       </div>`,
       iconSize: [20, 20]
     });
@@ -49,7 +45,7 @@ const fetchIconStatus = (status, battery) => {
   return L.icon({
     iconUrl: './assets/icons/car.svg',
     iconSize: [20, 20]
-  })
+  });
 };
 
 const ShowCrimes = ({ data }) => {
