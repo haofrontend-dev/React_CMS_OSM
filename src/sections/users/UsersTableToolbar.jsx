@@ -7,9 +7,13 @@ import {
   Tooltip,
   Typography
 } from '@mui/material';
-import React from 'react';
 
-const OrdersTableToolbar = ({ numSelected, filterName, onFilterName, onOptionFilter }) => {
+const OrdersTableToolbar = ({
+  numSelected,
+  filterName,
+  onFilterName,
+  onOptionFilter
+}) => {
   return (
     <Toolbar
       sx={{
@@ -32,7 +36,7 @@ const OrdersTableToolbar = ({ numSelected, filterName, onFilterName, onOptionFil
         <OutlinedInput
           value={filterName}
           onChange={onFilterName}
-          placeholder='Tìm kiếm đơn hàng...'
+          placeholder='Tìm kiếm khách hàng...'
           sx={{
             width: '100%'
           }}
