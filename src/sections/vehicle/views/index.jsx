@@ -24,8 +24,6 @@ import VehicleTableRow from '../VehicleTableRow';
 import TableEmptyRows from '@/components/common/table/TableEmptyRows';
 import TableNoData from '@/components/common/table/TableNoData';
 import useAppSelector from '@/hooks/useAppSelector';
-import { useDispatch } from 'react-redux';
-import { getVehicleAll } from '@/features/vehicle/vehicleThunk';
 
 const VehicleManagerView = () => {
   const { dataVehicle } = useAppSelector(state => state.vehicle);
@@ -133,7 +131,7 @@ const VehicleManagerView = () => {
             onFilterName={handleFilterByName}
             onOptionFilter={handleShowFilter}
           />
-          {isShowFilter && <VehicleTableFilter onFilter={handleActionFilter} />}
+          { <VehicleTableFilter onFilter={handleActionFilter} />}
 
           <TableContainer sx={{ overflow: 'unset' }}>
             <Table sx={{ minWidth: 800 }}>

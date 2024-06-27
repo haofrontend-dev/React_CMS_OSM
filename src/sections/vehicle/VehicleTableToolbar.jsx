@@ -15,7 +15,6 @@ const VehicleTableToolbar = ({ numSelected, filterName, onFilterName, onOptionFi
       sx={{
         height: 96,
         display: 'flex',
-        justifyContent: 'space-between',
         gap: '16px',
         p: theme => theme.spacing(0, 1, 0, 3),
         ...(numSelected > 0 && {
@@ -34,7 +33,7 @@ const VehicleTableToolbar = ({ numSelected, filterName, onFilterName, onOptionFi
           onChange={onFilterName}
           placeholder='Tìm kiếm xe bằng ID...'
           sx={{
-            width: '100%'
+            width: '50%'
           }}
           startAdornment={
             <InputAdornment position='start'>

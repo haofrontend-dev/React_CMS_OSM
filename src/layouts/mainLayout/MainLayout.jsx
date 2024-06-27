@@ -25,7 +25,7 @@ const MainLayout = () => {
         <Sidebar
           isSidebarOpen={isSidebarOpen}
           isMobileSidebarOpen={isMobileSidebarOpen}
-          onSidebarClose={() => setSidebarOpen(false)}
+          onSidebarClose={() => setMobileSidebarOpen(false)}
           onMobileSidebarOpen={() => setMobileSidebarOpen(true)}
         />
         <PageWrapper>

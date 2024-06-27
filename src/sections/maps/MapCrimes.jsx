@@ -7,7 +7,6 @@ import {
   Box,
   Button,
   Card,
-  Chip,
   Divider,
   Stack,
   Typography
@@ -18,7 +17,7 @@ import {
   generateClassStatusBattery,
   generateNameVehicle,
   generatePathImage,
-  generateTextStatus
+  generateTextStatusVehicle
 } from '@/utils';
 import Label from '@/components/common/label';
 const icons = {};
@@ -35,10 +34,23 @@ const fetchIcon = count => {
   return icons[count];
 };
 
-const icon = L.icon({
-  iconUrl: './assets/icons/car.svg',
-  iconSize: [20, 20]
-});
+const fetchIconStatus = (status, battery) => {
+  if (status && battery) {
+    return L.divIcon({
+      html: `<div class="icon-maker" style="...">
+        <div class="icon-maker__color ${generateClassStatus(status)}">
+        </div>
+        <img src="./assets/icons/car.svg" alt="car" />
+      </div>`,
+      iconSize: [20, 20]
+    });
+  }
+
+  return L.icon({
+    iconUrl: './assets/icons/car.svg',
+    iconSize: [20, 20]
+  })
+};
 
 const ShowCrimes = ({ data }) => {
   const [bounds, setBounds] = React.useState();
@@ -141,7 +153,7 @@ const ShowCrimes = ({ data }) => {
           <Marker
             key={`crime-${cluster.properties.crimeId}`}
             position={[latitude, longitude]}
-            icon={icon}
+            icon={fetchIconStatus(status, battery_status)}
           >
             <Popup>
               <Card variant='outlined' sx={{ maxWidth: 360 }}>
@@ -171,7 +183,7 @@ const ShowCrimes = ({ data }) => {
                       }}
                     >
                       <Label color={generateClassStatus(status)}>
-                        {generateTextStatus(status)}
+                        {generateTextStatusVehicle(status)}
                       </Label>
                     </Typography>
                   </Stack>
@@ -199,7 +211,7 @@ const ShowCrimes = ({ data }) => {
                 </Box>
 
                 <Box sx={{ p: 2 }}>
-                  <img src={generatePathImage(vehicle_type)} alt={device_id}/>
+                  <img src={generatePathImage(vehicle_type)} alt={device_id} />
                 </Box>
                 <Divider />
                 <Box sx={{ p: 1 }}>

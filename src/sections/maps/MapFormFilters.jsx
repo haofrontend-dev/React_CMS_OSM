@@ -46,9 +46,9 @@ export const getVehicleTypeOptions = () => {
     { value: 9, label: 'Polestar 2' },
     { value: 10, label: 'Tesla Model 3' }
   ];
-}
+};
 
-const VehicleTableFilter = ({ onFilter }) => {
+const MapFormFilter = ({ onFilter }) => {
   const [selectFilter, setSelectedFilter] = React.useState({
     status: [],
     battery: [],
@@ -56,7 +56,10 @@ const VehicleTableFilter = ({ onFilter }) => {
   });
 
   const options = React.useMemo(() => getVehicleStatusOptions(), []);
-  const optionsBattery = React.useMemo(() => getVehicleTypeBatteryOptions(), []);
+  const optionsBattery = React.useMemo(
+    () => getVehicleTypeBatteryOptions(),
+    []
+  );
   const optionVehicleType = React.useMemo(() => getVehicleTypeOptions(), []);
 
   const handleChange = event => {
@@ -68,16 +71,15 @@ const VehicleTableFilter = ({ onFilter }) => {
       ...prev,
       [name]: typeof value === 'string' ? value.split(',') : value
     }));
-
   };
 
   const handleActionFilter = () => {
     onFilter(selectFilter);
-  }
+  };
 
   React.useEffect(() => {
     console.log(selectFilter);
-  }, [selectFilter])
+  }, [selectFilter]);
   return (
     <Grid
       container
@@ -87,7 +89,7 @@ const VehicleTableFilter = ({ onFilter }) => {
         p: theme => theme.spacing(0, 1, 0, 3)
       }}
     >
-      <Grid item xs={12} sm={3}>
+      <Grid item xs={12} sm={12}>
         <FormControl sx={{ m: 1, width: '100%' }}>
           <InputLabel
             id='demo-multiple-checkbox-label'
@@ -123,7 +125,7 @@ const VehicleTableFilter = ({ onFilter }) => {
         </FormControl>
       </Grid>
 
-      <Grid item xs={12} sm={2}>
+      <Grid item xs={12} sm={12}>
         <FormControl sx={{ m: 1, width: '100%' }}>
           <InputLabel
             id='demo-multiple-checkbox-label'
@@ -159,7 +161,7 @@ const VehicleTableFilter = ({ onFilter }) => {
         </FormControl>
       </Grid>
 
-      <Grid item xs={12} sm={3}>
+      <Grid item xs={12} sm={12}>
         <FormControl sx={{ m: 1, width: '100%' }}>
           <InputLabel
             id='demo-multiple-checkbox-label'
@@ -187,7 +189,9 @@ const VehicleTableFilter = ({ onFilter }) => {
           >
             {optionVehicleType.map(status => (
               <MenuItem key={status.value} value={status}>
-                <Checkbox checked={selectFilter.vehicleType.indexOf(status) > -1} />
+                <Checkbox
+                  checked={selectFilter.vehicleType.indexOf(status) > -1}
+                />
                 <ListItemText primary={status.label} />
               </MenuItem>
             ))}
@@ -195,17 +199,29 @@ const VehicleTableFilter = ({ onFilter }) => {
         </FormControl>
       </Grid>
 
-      <Grid item xs={12} sm={12} display='flex' justifyContent='center'>
-        <Button variant='contained' color='primary' onClick={handleActionFilter}>
+      <Grid item xs={12} sm={12} display='flex' justifyContent='center' gap={4}>
+        <Button
+          variant='contained'
+          color='primary'
+          onClick={handleActionFilter}
+        >
           Tìm kiếm
+        </Button>
+
+        <Button
+          variant='contained'
+          color='success'
+          onClick={handleActionFilter}
+        >
+          Trời lại
         </Button>
       </Grid>
     </Grid>
   );
 };
 
-VehicleTableFilter.propTypes = {
+MapFormFilter.propTypes = {
   onFilter: PropTypes.func
 };
 
-export default VehicleTableFilter;
+export default MapFormFilter;

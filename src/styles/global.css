@@ -18,3 +18,45 @@
   justify-content: center;
   align-items: center;
 }
+
+.icon-maker {
+  width: 30px;
+  height: 30px;
+  align-items: center;
+  position: relative;
+}
+
+.icon-maker .icon-maker__color {
+  width: 100%;
+  height: 100%;
+  padding: 4px;
+  border-radius: 60px 60px 0px 60px;
+  position: relative;
+  display: flex;
+  transform: rotate(45deg);
+  justify-content: center;
+}
+
+.icon-maker img {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.icon-maker .icon-maker__color.success {
+  background-color: #4caf50;
+}
+
+.icon-maker .icon-maker__color.primary {
+  background-color: #1978c8;
+}
+
+.icon-maker .icon-maker__color.error {
+  background-color: #f44336;
+}
+
+.icon-maker .icon-maker__color.warning {
+  background-color: #ff9800;
+}

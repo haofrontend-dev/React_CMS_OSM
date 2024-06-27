@@ -10,6 +10,8 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import ShowCrimes from '../MapCrimes';
 import useAppSelector from '@/hooks/useAppSelector';
+import { Box, Grid } from '@mui/material';
+import MapControll from '../MapControll';
 
 const ResetCenterView = props => {
   // eslint-disable-next-line react/prop-types
@@ -56,23 +58,30 @@ const MapsManagersViews = () => {
 
   if (dataVehicle) {
     return (
-      <MapContainer
-        center={location}
-        zoom={15}
-        scrollWheelZoom={true}
-        maxBounds={maxBounds}
-        style={{ width: '100%', minHeight: '100vh' }}
-        zoomControl={false}
-      >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-        />
-        {location.length > 0 && <ResetCenterView location={location} />}
-        <ZoomControl position='topleft' />
-        <EnforceBounds maxBounds={maxBounds} />
-        {dataVehicle && <ShowCrimes data={dataVehicle} />}
-      </MapContainer>
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={12}>
+          <Box sx={{ width: '100%', minHeight: '100vh', position: 'relative' }}>
+            <MapContainer
+              center={location}
+              zoom={15}
+              scrollWheelZoom={true}
+              maxBounds={maxBounds}
+              style={{ width: '100%', minHeight: '100vh' }}
+              zoomControl={false}
+            >
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+              />
+              {location.length > 0 && <ResetCenterView location={location} />}
+              <ZoomControl position='topleft' />
+              <EnforceBounds maxBounds={maxBounds} />
+              {dataVehicle && <ShowCrimes data={dataVehicle} />}
+            </MapContainer>
+            <MapControll />
+          </Box>
+        </Grid>
+      </Grid>
     );
   }
 
