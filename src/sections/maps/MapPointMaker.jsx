@@ -57,7 +57,7 @@ const MapPointMaker = ({ dataPoints }) => {
             position={[dataPoint.latitude, dataPoint.longitude]}
             icon={fetchIcon(dataPoint.point_type)}
           >
-            <Tooltip direction='bottom' opacity={1} permanent>
+            <Tooltip direction='bottom' offset={[0, 20]} opacity={1} permanent>
               {getNamePoint(dataPoint.point_type)}
             </Tooltip>
           </Marker>
