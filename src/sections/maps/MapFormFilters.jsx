@@ -213,7 +213,7 @@ const MapFormFilter = ({ onFilter }) => {
           color='success'
           onClick={handleActionFilter}
         >
-          Trời lại
+          Trở lại
         </Button>
       </Grid>
     </Grid>
