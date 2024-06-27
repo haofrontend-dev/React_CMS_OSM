@@ -13,7 +13,6 @@ import {
   generatePathImage,
   generateTextStatusVehicle
 } from '@/utils';
-import { debounce } from 'lodash';
 const icons = {};
 
 const fetchIcon = count => {
@@ -68,7 +67,7 @@ const ShowCrimes = ({ data }) => {
   const [zoom, setZoom] = React.useState(12);
   const map = useMap();
 
-  const updateMap = React.useCallback(() => {
+  const updateBounds = React.useCallback(() => {
     const b = map.getBounds();
     setBounds([
       b.getSouthWest().lng,
@@ -76,23 +75,37 @@ const ShowCrimes = ({ data }) => {
       b.getNorthEast().lng,
       b.getNorthEast().lat
     ]);
+  }, [map]);
+
+  const updateZoom = React.useCallback(() => {
     setZoom(map.getZoom());
   }, [map]);
 
-  const debouncedUpdateMap = React.useCallback(debounce(updateMap, 200), [
-    updateMap
-  ]);
+  React.useEffect(() => {
+    updateBounds();
+    updateZoom();
+  }, [updateBounds, updateZoom]);
 
   React.useEffect(() => {
-    updateMap();
-  }, []);
-
-  React.useEffect(() => {
-    map.on('move', debouncedUpdateMap);
+    map.on('zoomend', () => {
+      updateBounds();
+      updateZoom();
+    });
     return () => {
-      map.off('move', debouncedUpdateMap);
+      map.off('zoomend', updateBounds);
+      map.off('zoomend', updateZoom);
     };
-  }, [map, debouncedUpdateMap]);
+  }, [map, updateBounds, updateZoom]);
+
+  // Fit map to bounds containing all points initially
+  React.useEffect(() => {
+    if (data.length > 0) {
+      const latLngBounds = L.latLngBounds(
+        data.map(crime => [crime.latitude, crime.longitude])
+      );
+      map.fitBounds(latLngBounds);
+    }
+  }, [data, map]);
 
   const points = React.useMemo(
     () =>
@@ -124,6 +137,8 @@ const ShowCrimes = ({ data }) => {
     zoom: zoom,
     options: { radius: 90, maxZoom: 17 }
   });
+
+  console.log(clusters);
 
   return (
     <React.Fragment>

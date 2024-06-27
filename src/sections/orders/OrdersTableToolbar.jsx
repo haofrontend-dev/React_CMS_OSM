@@ -9,7 +9,12 @@ import {
 } from '@mui/material';
 import React from 'react';
 
-const OrdersTableToolbar = ({ numSelected, filterName, onFilterName, onOptionFilter }) => {
+const OrdersTableToolbar = ({
+  numSelected,
+  filterName,
+  onFilterName,
+  onOptionFilter
+}) => {
   return (
     <Toolbar
       sx={{
@@ -54,11 +59,7 @@ const OrdersTableToolbar = ({ numSelected, filterName, onFilterName, onOptionFil
           </IconButton>
         </Tooltip>
       ) : (
-        <Tooltip title='Filter list'>
-          <IconButton onClick={onOptionFilter}>
-            <Iconify icon='ic:round-filter-list' />
-          </IconButton>
-        </Tooltip>
+        <React.Fragment></React.Fragment>
       )}
     </Toolbar>
   );

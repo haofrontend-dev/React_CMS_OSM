@@ -1,28 +1,26 @@
-import React from 'react';
+import Iconify from '@/components/common/Iconify';
 import {
-  Box,
-  Typography,
-  Breadcrumbs,
-  Stack,
   Button,
   Card,
   Container,
-  TableContainer,
+  Stack,
   Table,
   TableBody,
-  TablePagination
+  TableContainer,
+  TablePagination,
+  Typography
 } from '@mui/material';
-import Iconify from '@/components/common/Iconify';
-import UsersTableToolbar from '../UsersTableToolbar';
+import React from 'react';
 import UsersTableFilter from '../UsersTableFilter';
 import UsersTableHead from '../UsersTableHead';
+import UsersTableToolbar from '../UsersTableToolbar';
 
-import { cars } from '@/dumy/listCars';
-import { applyFilter, emptyRows, getComparator } from '@/utils';
-import UsersTableRow from '../UsersTableRow';
 import TableEmptyRows from '@/components/common/table/TableEmptyRows';
 import TableNoData from '@/components/common/table/TableNoData';
+import { cars } from '@/dumy/listCars';
 import useAppSelector from '@/hooks/useAppSelector';
+import { applyFilter, emptyRows, getComparator } from '@/utils';
+import UsersTableRow from '../UsersTableRow';
 
 const UsersManagerView = () => {
   const { dataUsers } = useAppSelector(state => state.users);
@@ -102,7 +100,7 @@ const UsersManagerView = () => {
     const notFound = !dataFiltered.length && !!filterName;
 
     return (
-      <Container maxWidth="xl">
+      <Container maxWidth='xl'>
         <Stack
           spacing={2}
           direction='row'
@@ -126,7 +124,7 @@ const UsersManagerView = () => {
             onFilterName={handleFilterByName}
             onOptionFilter={handleShowFilter}
           />
-          {isShowFilter && <UsersTableFilter onFilter={handleActionFilter} />}
+          {<UsersTableFilter onFilter={handleActionFilter} />}
 
           <TableContainer sx={{ overflow: 'unset' }}>
             <Table sx={{ minWidth: 800 }}>
@@ -144,7 +142,7 @@ const UsersManagerView = () => {
                   { id: 'phone_number', label: 'SĐT' },
                   { id: 'address', label: 'Địa chỉ' },
                   { id: 'registration_date', label: 'Ngày đăng ký' },
-                  { id: '', }
+                  { id: '' }
                 ]}
               />
               <TableBody>

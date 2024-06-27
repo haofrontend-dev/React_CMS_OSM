@@ -1,28 +1,26 @@
-import React from 'react';
+import Iconify from '@/components/common/Iconify';
 import {
-  Box,
-  Typography,
-  Breadcrumbs,
-  Stack,
   Button,
   Card,
   Container,
-  TableContainer,
+  Stack,
   Table,
   TableBody,
-  TablePagination
+  TableContainer,
+  TablePagination,
+  Typography
 } from '@mui/material';
-import Iconify from '@/components/common/Iconify';
-import OrdersTableToolbar from '../OrdersTableToolbar';
+import React from 'react';
 import OrdersTableFilter from '../OrdersTableFilter';
 import OrdersTableHead from '../OrdersTableHead';
+import OrdersTableToolbar from '../OrdersTableToolbar';
 
-import { cars } from '@/dumy/listCars';
-import { applyFilter, emptyRows, getComparator } from '@/utils';
-import OrdersTableRow from '../OrdersTableRow';
 import TableEmptyRows from '@/components/common/table/TableEmptyRows';
 import TableNoData from '@/components/common/table/TableNoData';
+import { cars } from '@/dumy/listCars';
 import useAppSelector from '@/hooks/useAppSelector';
+import { applyFilter, emptyRows, getComparator } from '@/utils';
+import OrdersTableRow from '../OrdersTableRow';
 
 const OrdersManagerView = () => {
   const { dataOrders } = useAppSelector(state => state.orders);
@@ -102,7 +100,7 @@ const OrdersManagerView = () => {
     const notFound = !dataFiltered.length && !!filterName;
 
     return (
-      <Container maxWidth="xl">
+      <Container maxWidth='xl'>
         <Stack
           spacing={2}
           direction='row'
@@ -126,7 +124,7 @@ const OrdersManagerView = () => {
             onFilterName={handleFilterByName}
             onOptionFilter={handleShowFilter}
           />
-          {isShowFilter && <OrdersTableFilter onFilter={handleActionFilter} />}
+          <OrdersTableFilter onFilter={handleActionFilter} />
 
           <TableContainer sx={{ overflow: 'unset' }}>
             <Table sx={{ minWidth: 800 }}>
@@ -145,7 +143,7 @@ const OrdersManagerView = () => {
                   { id: 'total_price', label: 'Tổng tiền' },
                   { id: 'rental_start', label: 'Ngày bắt đầu thuê' },
                   { id: 'rental_end', label: 'Ngày kết thúc' },
-                  { id: '', },
+                  { id: '' }
                 ]}
               />
               <TableBody>

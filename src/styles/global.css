@@ -40,27 +40,17 @@
 .icon-maker img {
   width: 20px;
   height: 20px;
+}
+
+.icon-maker .icon-maker__location {
+  width: 35px;
+  height: 35px;
+}
+.icon-maker .icon-maker__car {
   position: absolute;
-  top: 5px;
-  left: 5px;
+  top: 3px;
+  left: 7px;
 }
-
-.icon-maker .icon-maker__color.success {
-  background-color: #4caf50;
-}
-
-.icon-maker .icon-maker__color.primary {
-  background-color: #1978c8;
-}
-
-.icon-maker .icon-maker__color.error {
-  background-color: #f44336;
-}
-
-.icon-maker .icon-maker__color.warning {
-  background-color: #ff9800;
-}
-
 .icon-maker__battery {
   position: absolute;
   top: 100%;
@@ -72,7 +62,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow:  0 0 0 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
 }
 
 .icon-maker__battery.success span {

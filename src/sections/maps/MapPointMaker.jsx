@@ -47,7 +47,6 @@ const fetchIcon = count => {
 };
 
 const MapPointMaker = ({ dataPoints }) => {
-  console.log(dataPoints);
   return (
     <React.Fragment>
       {Array.isArray(dataPoints) &&

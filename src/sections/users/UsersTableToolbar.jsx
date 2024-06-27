@@ -7,6 +7,7 @@ import {
   Tooltip,
   Typography
 } from '@mui/material';
+import React from 'react';
 
 const OrdersTableToolbar = ({
   numSelected,
@@ -58,11 +59,7 @@ const OrdersTableToolbar = ({
           </IconButton>
         </Tooltip>
       ) : (
-        <Tooltip title='Filter list'>
-          <IconButton onClick={onOptionFilter}>
-            <Iconify icon='ic:round-filter-list' />
-          </IconButton>
-        </Tooltip>
+        <React.Fragment></React.Fragment>
       )}
     </Toolbar>
   );
