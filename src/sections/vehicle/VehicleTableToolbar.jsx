@@ -7,9 +7,13 @@ import {
   Tooltip,
   Typography
 } from '@mui/material';
-import React from 'react';
 
-const VehicleTableToolbar = ({ numSelected, filterName, onFilterName, onOptionFilter }) => {
+const VehicleTableToolbar = ({
+  numSelected,
+  filterName,
+  onFilterName,
+  onOptionFilter
+}) => {
   return (
     <Toolbar
       sx={{
@@ -46,16 +50,10 @@ const VehicleTableToolbar = ({ numSelected, filterName, onFilterName, onOptionFi
         />
       )}
 
-      {numSelected > 0 ? (
+      {numSelected > 0 && (
         <Tooltip title='Delete'>
           <IconButton>
             <Iconify icon='eva:trash-2-fill' />
-          </IconButton>
-        </Tooltip>
-      ) : (
-        <Tooltip title='Filter list'>
-          <IconButton onClick={onOptionFilter}>
-            <Iconify icon='ic:round-filter-list' />
           </IconButton>
         </Tooltip>
       )}

@@ -16,9 +16,9 @@ const useRouteTitle = () => {
       const match = path.match(route.pattern);
       if (match) {
         if (typeof route.title === 'function') {
-          title = route.title(...match.slice(1));
+          title = `Pink App | ${route.title(match[1])}`;
         } else {
-          title = route.title;
+          title = `Pink App | ${route.title}`;
         }
         break;
       }
