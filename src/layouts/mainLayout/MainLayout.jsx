@@ -2,13 +2,13 @@ import React from 'react';
 
 import { Outlet } from 'react-router-dom';
 
-import { Footer, Header } from '@/routes/lazyLoader';
+import { getProfileAll } from '@/features/profiles/profilesThunk';
 import MainWrapper from '@/layouts/common/MainWraper';
-import Sidebar from '../sidebar/Sidebar';
-import PageWrapper from '../common/PageWrapper';
+import { Footer, Header } from '@/routes/lazyLoader';
 import { Container } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { getProfileAll } from '@/features/profiles/profilesThunk';
+import PageWrapper from '../common/PageWrapper';
+import Sidebar from '../sidebar/Sidebar';
 
 const MainLayout = () => {
   const dispatch = useDispatch();

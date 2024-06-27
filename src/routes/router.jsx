@@ -1,13 +1,13 @@
-import { createBrowserRouter, redirect } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 
 import NotFound from '@/pages/notfound';
 import {
-  DashBoardLayout,
-  Dashboard,
   Error5XX,
   LayoutAuth,
   LayoutMain,
   Login,
+  Maps,
+  Orders,
   Profile,
   Unauthorized,
   User,
@@ -19,9 +19,7 @@ import {
   VehicleCreate,
   VehicleDetail,
   VehicleEdit,
-  VehicleLayout,
-  Orders,
-  Maps
+  VehicleLayout
 } from '@/routes/lazyLoader';
 
 import App from '@/App';
@@ -106,7 +104,7 @@ const routes = [
           {
             path: 'list-orders',
             element: <Orders />,
-            errorElement: <Error5XX />,
+            errorElement: <Error5XX />
           },
           {
             path: 'maps',

@@ -1,17 +1,13 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
+import { USER_KEYS } from '@/configs';
 import { loginUser } from '@/features/auth/authThunk';
 import useAppSelector from '@/hooks/useAppSelector';
 import { setItem } from '@/utils';
-import { USER_KEYS } from '@/configs';
-import {
-  Box,
-  Button,
-  TextField
-} from '@mui/material';
+import { Box, Button, TextField } from '@mui/material';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -62,9 +58,7 @@ const Login = () => {
                         pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
                       })}
                       error={!!errors.email}
-                      helperText={
-                        errors.email ? 'Email in correct format' : ''
-                      }
+                      helperText={errors.email ? 'Email in correct format' : ''}
                       autoComplete='off' // or "new-password"
                     />
 
@@ -75,8 +69,7 @@ const Login = () => {
                       type='password'
                       {...register('password', {
                         required: true,
-                        minLength: 5,
-                       
+                        minLength: 5
                       })}
                       error={!!errors.password}
                       helperText={
@@ -91,7 +84,7 @@ const Login = () => {
                       color='primary'
                       disabled={isLoading}
                     >
-                      { isLoading ? 'Loading...' : 'Login' }
+                      {isLoading ? 'Loading...' : 'Login'}
                     </Button>
                   </Box>
                 </form>
