@@ -102,7 +102,7 @@ const OrdersManagerView = () => {
     const notFound = !dataFiltered.length && !!filterName;
 
     return (
-      <Container>
+      <Container maxWidth="xl">
         <Stack
           spacing={2}
           direction='row'
