@@ -1,7 +1,6 @@
-import React from 'react';
+import { Box, Button, Drawer } from '@mui/material';
 import PropTypes from 'prop-types';
-import { Box, Button, Drawer, IconButton } from '@mui/material';
-import { CloseOutlined } from '@mui/icons-material';
+import React from 'react';
 import MapFormFilter from './MapFormFilters';
 
 const MapControll = ({ onActionFillter }) => {
@@ -13,19 +12,19 @@ const MapControll = ({ onActionFillter }) => {
 
   return (
     <React.Fragment>
-      <Button
-        color='primary'
-        variant='contained'
-        sx={{
-          position: 'absolute',
-          zIndex: 998,
-          top: '10px',
-          right: '10px'
-        }}
-        onClick={handleDirectionsToggle}
-      >
-        Tìm kiếm
-      </Button>
+      <Box textAlign={'right'}>
+        <Button
+          color='primary'
+          variant='contained'
+          onClick={handleDirectionsToggle}
+          sx={{
+            marginBottom: '24px',
+            marginLeft: 'auto'
+          }}
+        >
+          Tìm kiếm
+        </Button>
+      </Box>
 
       <Drawer variant='persistent' open={showDirectionsPanel} anchor='right'>
         <Box

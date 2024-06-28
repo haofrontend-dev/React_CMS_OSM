@@ -62,6 +62,7 @@ const MapsManagersViews = () => {
       <Grid container spacing={2}>
         <Grid item xs={12} sm={12}>
           <Box sx={{ width: '100%', minHeight: '100vh', position: 'relative' }}>
+            <MapControll />
             <MapContainer
               center={location}
               zoom={15}
@@ -80,7 +81,6 @@ const MapsManagersViews = () => {
               {dataVehicle && <ShowCrimes data={dataVehicle} />}
               {dataPoints && <MapPointMaker dataPoints={dataPoints} />}
             </MapContainer>
-            <MapControll />
           </Box>
         </Grid>
       </Grid>

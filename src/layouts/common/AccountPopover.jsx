@@ -1,17 +1,19 @@
 import { useState } from 'react';
 
-import Box from '@mui/material/Box';
-import Avatar from '@mui/material/Avatar';
-import Divider from '@mui/material/Divider';
-import Popover from '@mui/material/Popover';
-import { alpha } from '@mui/material/styles';
-import MenuItem from '@mui/material/MenuItem';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import { Link, useNavigate } from 'react-router-dom';
+import { USER_KEYS } from '@/configs';
+import { clearAllInit } from '@/features/auth/authSlice';
 import useAppSelector from '@/hooks/useAppSelector';
 import { removeItem } from '@/utils';
-import { USER_KEYS } from '@/configs';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import MenuItem from '@mui/material/MenuItem';
+import Popover from '@mui/material/Popover';
+import { alpha } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const account = {
   displayName: 'Jaydon Frankie',
@@ -33,6 +35,7 @@ const MENU_OPTIONS = [
 
 export default function AccountPopover() {
   const { dataProfile } = useAppSelector(state => state.profile);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [open, setOpen] = useState(null);
 
@@ -45,9 +48,10 @@ export default function AccountPopover() {
   };
 
   const handleLogout = () => {
-    removeItem(USER_KEYS.USER_TOKEN)
+    dispatch(clearAllInit());
+    removeItem(USER_KEYS.USER_TOKEN);
     navigate('/auth/login', { replace: true });
-  }
+  };
 
   return (
     <>

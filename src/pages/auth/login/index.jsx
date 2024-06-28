@@ -7,10 +7,25 @@ import { USER_KEYS } from '@/configs';
 import { loginUser } from '@/features/auth/authThunk';
 import useAppSelector from '@/hooks/useAppSelector';
 import { setItem } from '@/utils';
-import { Box, Button, TextField } from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import {
+  Box,
+  Button,
+  IconButton,
+  InputAdornment,
+  TextField
+} from '@mui/material';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Login = () => {
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = React.useState(false);
+
+  const handleClickShowPassword = () => setShowPassword(show => !show);
+
+  const handleMouseDownPassword = event => {
+    event.preventDefault();
+  };
 
   const {
     register,
@@ -18,7 +33,7 @@ const Login = () => {
     formState: { errors }
   } = useForm();
 
-  const { isLoading, dataAuth } = useAppSelector(state => state.auth);
+  const { isLoading, dataAuth, error } = useAppSelector(state => state.auth);
   const dispatch = useDispatch();
 
   const onSubmit = data => {
@@ -30,7 +45,11 @@ const Login = () => {
       setItem(USER_KEYS.USER_TOKEN, dataAuth.access_token);
       navigate('/');
     }
-  }, [dataAuth]);
+
+    if (error) {
+      toast.error('Tài khoản hoặc mật khẩu không đúng.');
+    }
+  }, [dataAuth, error]);
 
   return (
     <React.Fragment>
@@ -66,7 +85,7 @@ const Login = () => {
                       id='password'
                       label='Password'
                       variant='outlined'
-                      type='password'
+                      type={showPassword ? 'text' : 'password'}
                       {...register('password', {
                         required: true,
                         minLength: 5
@@ -76,6 +95,24 @@ const Login = () => {
                         errors.password ? 'Password must be 5 characters' : ''
                       }
                       autoComplete='off' // or "new-password"
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment position='end'>
+                            <IconButton
+                              aria-label='toggle password visibility'
+                              onClick={handleClickShowPassword}
+                              onMouseDown={handleMouseDownPassword}
+                              edge='end'
+                            >
+                              {showPassword ? (
+                                <VisibilityOff />
+                              ) : (
+                                <Visibility />
+                              )}
+                            </IconButton>
+                          </InputAdornment>
+                        )
+                      }}
                     />
                     <Button
                       type='submit'
@@ -99,6 +136,7 @@ const Login = () => {
             />
           </div>
         </div>
+        <Toaster />
       </div>
     </React.Fragment>
   );
