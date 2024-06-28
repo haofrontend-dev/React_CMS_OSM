@@ -61,14 +61,14 @@ const MapsManagersViews = () => {
     return (
       <Grid container spacing={2}>
         <Grid item xs={12} sm={12}>
-          <Box sx={{ width: '100%', minHeight: '100vh', position: 'relative' }}>
+          <Box sx={{ width: '100%', minHeight: '100%', position: 'relative' }}>
             <MapControll />
             <MapContainer
               center={location}
               zoom={15}
               scrollWheelZoom={true}
               maxBounds={maxBounds}
-              style={{ width: '100%', minHeight: '100vh' }}
+              style={{ width: '100%', minHeight: '80vh' }}
               zoomControl={false}
             >
               <TileLayer

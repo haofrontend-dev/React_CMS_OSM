@@ -33,11 +33,11 @@ const getIcon = type => {
     case 1:
       return './assets/icons/location_success.svg';
     case 2:
-      return './assets/icons/location-error.svg';
-    case 3:
       return './assets/icons/location-primary.svg';
-    case 4:
+    case 3:
       return './assets/icons/location-warning.svg';
+    case 4:
+      return './assets/icons/location-error.svg';
     default:
       return './assets/icons/location-warning.svg';
   }
